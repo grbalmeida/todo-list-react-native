@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 
-import Form from './components/Form'
+// import Form from './components/Form'
+import Input from './components/Input'
 
 export default class Todo extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Form />
+        <View>
+          <Input
+            onChangeText={() => null}
+            value=''
+          />
+        </View>
       </View>
     )
   }
