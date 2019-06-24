@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Button } from 'react-native'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
+import rootReducer from './redux/reducers'
 import Input from './components/Input'
+
+const store = createStore(rootReducer)
 
 export default class Todo extends Component {
   constructor (props) {
@@ -26,20 +31,22 @@ export default class Todo extends Component {
     const { text } = this.state
 
     return (
-      <View style={styles.formContainer}>
-        <View style={styles.inputContainer}>
-          <Input
-            onChangeText={text => this.onChangeText(text)}
-            value={text}
-          />
+      <Provider store={store}>
+        <View style={styles.formContainer}>
+          <View style={styles.inputContainer}>
+            <Input
+              onChangeText={text => this.onChangeText(text)}
+              value={text}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={() => this.onPress()}
+              title='add'
+            />
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => this.onPress()}
-            title='add'
-          />
-        </View>
-      </View>
+      </Provider>
     )
   }
 }
