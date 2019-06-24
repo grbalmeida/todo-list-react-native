@@ -1,22 +1,41 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Button } from 'react-native'
 
-// import Form from './components/Form'
 import Input from './components/Input'
 
 export default class Todo extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      text: ''
+    }
+  }
+
+  onChangeText (text) {
+    this.setState({
+      text
+    })
+  }
+
+  onPress () {
+    console.log(this.state.text)
+  }
+
   render () {
+    const { text } = this.state
+
     return (
       <View style={styles.formContainer}>
         <View style={styles.inputContainer}>
           <Input
-            onChangeText={() => null}
-            value=''
+            onChangeText={text => this.onChangeText(text)}
+            value={text}
           />
         </View>
         <View style={styles.buttonContainer}>
           <Button
-            onPress={() => console.log('Pressed')}
+            onPress={() => this.onPress()}
             title='add'
           />
         </View>
@@ -27,12 +46,13 @@ export default class Todo extends Component {
 
 const styles = StyleSheet.create({
   formContainer: {
-
+    paddingTop: 30,
+    flexDirection: 'row'
   },
   inputContainer: {
-
+    flex: 4
   },
   buttonContainer: {
-
+    flex: 1
   }
 })
