@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Button } from 'react-native'
 
 // import Form from './components/Form'
 import Input from './components/Input'
@@ -7,11 +7,17 @@ import Input from './components/Input'
 export default class Todo extends Component {
   render () {
     return (
-      <View style={styles.container}>
-        <View>
+      <View style={styles.formContainer}>
+        <View style={styles.inputContainer}>
           <Input
             onChangeText={() => null}
             value=''
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={() => console.log('Pressed')}
+            title='add'
           />
         </View>
       </View>
@@ -20,7 +26,13 @@ export default class Todo extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 30
+  formContainer: {
+
+  },
+  inputContainer: {
+
+  },
+  buttonContainer: {
+
   }
 })
