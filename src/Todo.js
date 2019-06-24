@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+
+import Form from './components/Form'
 
 export default class Todo extends Component {
   render () {
     return (
-      <View>
-        <Text>Todo</Text>
+      <View style={styles.container}>
+        <Form />
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 30
+  }
+})
