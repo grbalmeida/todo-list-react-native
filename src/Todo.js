@@ -2,11 +2,12 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import devtoolsEnhancer from 'remote-redux-devtools'
 
 import rootReducer from './redux/reducers'
 import Form from './components/Form'
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, devtoolsEnhancer())
 
 const Todo = () => (
   <Provider store={store}>
