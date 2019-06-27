@@ -15,7 +15,7 @@ const Form = ({ addTodo }) => (
     </View>
     <View style={styles.buttonContainer}>
       <Button
-        onPress={addTodo}
+        onPress={() => addTodo('Test')}
         title='add'
       />
     </View>

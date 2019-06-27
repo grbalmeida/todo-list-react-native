@@ -17,7 +17,7 @@ const Todo = () => (
   <Provider store={store}>
     <View style={styles.formContainer}>
       <Form />
-      <TodoList todos={[]} />
+      <TodoList />
     </View>
   </Provider>
 )

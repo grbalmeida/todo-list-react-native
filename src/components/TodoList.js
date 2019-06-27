@@ -1,15 +1,19 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
-import PropTypes from 'prop-types'
 
-const TodoList = ({ todos }) => (
-  <View>
-    {todos.map(todo => <Text key={todo.id}>{todo.text}</Text>)}
-  </View>
-)
-
-TodoList.propTypes = {
-  todos: PropTypes.array.isRequired
+const TodoList = ({ todos }) => {
+  console.log(todos)
+  return (
+    <View>
+      {todos.map(todo => <Text key={todo.id}>{todo.text}</Text>)}
+    </View>
+  )
 }
 
-export default TodoList
+const mapStateToProps = state => {
+  const { todos } = state
+  return { todos }
+}
+
+export default connect(mapStateToProps)(TodoList)
