@@ -1,15 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Text } from 'react-native'
+import { FlatList } from 'react-native'
 
-const TodoList = ({ todos }) => {
-  console.log(todos)
-  return (
-    <View>
-      {todos.map(todo => <Text key={todo.id}>{todo.text}</Text>)}
-    </View>
-  )
-}
+import TodoListItem from './TodoListItem'
+
+const TodoList = ({ todos }) => (
+  <FlatList
+    data={todos}
+    renderItem={({ item }) => (
+      <TodoListItem text={item.text} />
+    )}
+    keyExtractor={item => `${item.id}`}
+  />
+)
 
 const mapStateToProps = state => {
   const { todos } = state

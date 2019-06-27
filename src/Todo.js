@@ -24,8 +24,7 @@ const Todo = () => (
 
 const styles = StyleSheet.create({
   formContainer: {
-    paddingTop: 30,
-    flexDirection: 'row'
+    paddingTop: 30
   }
 })
 
