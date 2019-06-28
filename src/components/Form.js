@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Button, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-import { addTodo, setTodoText } from '../redux/action-creators'
+import { addTodo, setTodoText, updateTodo } from '../redux/action-creators'
 import Input from './Input'
 
-const Form = ({ todo, addTodo, setTodoText }) => {
-  const { text } = todo
+const Form = ({ todo, addTodo, setTodoText, updateTodo }) => {
+  const { id, text } = todo
 
   return (
     <View style={styles.formContainer}>
@@ -18,8 +18,14 @@ const Form = ({ todo, addTodo, setTodoText }) => {
       </View>
       <View style={styles.buttonContainer}>
         <Button
-          onPress={() => addTodo(text)}
-          title='add'
+          onPress={() => {
+            if (id) {
+              return updateTodo(todo)
+            }
+
+            addTodo(text)
+          }}
+          title={id ? 'save' : 'add'}
         />
       </View>
     </View>
@@ -44,7 +50,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addTodo,
-  setTodoText
+  setTodoText,
+  updateTodo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -1,3 +1,5 @@
 export const SET_TODO_TEXT = 'SET_TODO_TEXT'
 export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
+export const SET_EDITING_TODO = 'SET_EDITING_TODO'
+export const UPDATE_TODO = 'UPDATE_TODO'

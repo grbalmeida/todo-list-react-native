@@ -2,8 +2,11 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
-const TodoListItem = ({ todo, onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+const TodoListItem = ({ todo, onPress, onLongPress }) => (
+  <TouchableOpacity
+    onPress={onPress}
+    onLongPress={onLongPress}
+  >
     <View style={styles.line}>
       <Text style={[
         styles.lineText,
@@ -35,7 +38,8 @@ const styles = StyleSheet.create({
 
 TodoListItem.propTypes = {
   todo: PropTypes.object.isRequired,
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired,
+  onLongPress: PropTypes.func.isRequired
 }
 
 export default TodoListItem
