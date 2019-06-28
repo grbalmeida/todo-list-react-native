@@ -3,12 +3,16 @@ import { connect } from 'react-redux'
 import { FlatList } from 'react-native'
 
 import TodoListItem from './TodoListItem'
+import { toggleTodo } from '../redux/action-creators'
 
-const TodoList = ({ todos }) => (
+const TodoList = ({ todos, toggleTodo }) => (
   <FlatList
     data={todos}
     renderItem={({ item }) => (
-      <TodoListItem text={item.text} />
+      <TodoListItem
+        todo={item}
+        onPress={() => toggleTodo(item.id)}
+      />
     )}
     keyExtractor={item => `${item.id}`}
   />
@@ -19,4 +23,8 @@ const mapStateToProps = state => {
   return { todos }
 }
 
-export default connect(mapStateToProps)(TodoList)
+const mapDispatchToProps = {
+  toggleTodo
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
