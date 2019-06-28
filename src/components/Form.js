@@ -2,25 +2,29 @@ import React from 'react'
 import { View, Button, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-import { addTodo } from '../redux/action-creators'
+import { addTodo, setTodoText } from '../redux/action-creators'
 import Input from './Input'
 
-const Form = ({ addTodo }) => (
-  <View style={styles.formContainer}>
-    <View style={styles.inputContainer}>
-      <Input
-        onChangeText={() => null}
-        value=''
-      />
+const Form = ({ todo, addTodo, setTodoText }) => {
+  const { text } = todo
+
+  return (
+    <View style={styles.formContainer}>
+      <View style={styles.inputContainer}>
+        <Input
+          onChangeText={text => setTodoText(text)}
+          value={text}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          onPress={() => addTodo(text)}
+          title='add'
+        />
+      </View>
     </View>
-    <View style={styles.buttonContainer}>
-      <Button
-        onPress={() => addTodo('Test')}
-        title='add'
-      />
-    </View>
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   formContainer: {
@@ -34,8 +38,13 @@ const styles = StyleSheet.create({
   }
 })
 
+const mapStateToProps = state => ({
+  todo: state.editingTodo
+})
+
 const mapDispatchToProps = {
-  addTodo
+  addTodo,
+  setTodoText
 }
 
-export default connect(null, mapDispatchToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(Form)
